@@ -1,0 +1,23 @@
+<!-- to make the UserCreateForm more appealing we add bootsrap or any other styles in forms.py but thats not good practice
+thus can use crispy forms(third party django application) to do required styling using bootstrap or any other framework-->
+{% extends 'blog/base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+<div class="content-section">
+    <form method="POST">
+        <!--below token is a required security ascpect by Django -->
+        {% csrf_token %}
+        <fieldset class="form-group">
+            <legend class="border-bottom mb-4">Join Today</legend>
+            <!-- vertical bars are used to use filters-->
+            {{ form|crispy }}
+        </fieldset>
+        <div class="form-group">
+            <button class="btn btn-outline-info" type="submit">Sign Up</button>
+        </div>
+    </form>
+    <div class="border-top pt-3">
+        <small class="text-muted">Already Have An Account?<a class="ml-2" href="{% url 'login' %}">Sign In</a></small>
+    </div>
+</div>
+{% endblock content %}
